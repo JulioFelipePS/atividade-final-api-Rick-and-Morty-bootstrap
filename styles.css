@@ -53,3 +53,12 @@ footer{
 .gray{
     color: #616161;
 }
+.page-link:hover{
+    background-color: transparent !important;
+    color: black !important;
+    font-weight: 900 !important; 
+}
+#btnHeader{
+    background: none;
+    border: none;
+}

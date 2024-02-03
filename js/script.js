@@ -1,19 +1,73 @@
 const rowCards = document.getElementById("rowCards")
+let firstPositionPag = document.getElementById("firstPosition")
+let secondPositionPag = document.getElementById("secondPosition")
+let thirdPositionPag = document.getElementById("thirdPosition")
+let searchBar = document.getElementById("searchBar")
+let searchBtn =document.getElementById("searchButton")
+let btnHeader = document.getElementById("btnHeader")
+let paginationRow = document.getElementById("paginationRow")
+
+
+btnHeader.addEventListener("click",(e)=>{
+    e.preventDefault()
+    fetchPage(1)
+})
+
+searchBtn.addEventListener("click",(e)=>{
+    e.preventDefault()
+    if (searchBar.value==="") {
+        
+        fetchPage(1)
+    } else {
+
+        fetchName(searchBar.value) 
+        
+    }
+})
+
+async function fetchEpisodes(){
+    try{
+        const response=await api.get("/episode")
+        console.log(response)
+
+        const totalPages = response.data.info.pages
+        const episodeLista = [];
+            let response3
+            if (totalPages===1) {
+                episodeLista.push(response.data.results)
+            } else {
+                for (let index = 1; index <= totalPages; index++) {
+                    response3 = await api.get(`/episode?page=${index}`)
+                    response3.data.results.forEach(element => {
+                        episodeLista.push(element)
+                    });
+    
+                }
+            }
+            console.log(episodeLista)
+
+    }catch(error){
+        console.log("error")
+    }
+}
 
 async function fetchPage(page) {
     try {
         const response = await api.get(`/character?page=${page}`)
         console.log(response.data.results)
+        paginationRow.style.display="flex"
+        const charList = response.data.results
+        writeCards(charList)
     }catch (error) {
         console.log('Erro ao buscar mensagens', error)
     }}
-    fetchPage(2)
-    fetchPage(30)
+
 
     async function fetchName(name) {
         try {
             const response = await api.get(`/character?name=${name}`)
             console.log(response.data.info.pages)
+            paginationRow.style.display="none"
             const totalPages = response.data.info.pages
             const characters = [];
             let response2
@@ -33,13 +87,14 @@ async function fetchPage(page) {
         }catch (error) {
             console.log('Erro ao buscar mensagens', error)
         }}
-    fetchName("Morty")
+   
 
     function writeCards(array){
+        rowCards.innerHTML=""
         array.forEach(element => {
             let listaUl = criarListaHTML(element.episode)
             
-
+            
             rowCards.innerHTML +=`
             
             <div class="  col-6 col-sm-12 mb-5    " style="max-width: 700px; min-width: 375px;" >
@@ -56,7 +111,7 @@ async function fetchPage(page) {
                         <p class="mt-2 fs-5  mb-0 ">Ultima localização conhecida:</p>
                         <p class="mb-4 fs-2 ">${element.location.name}</p>
                         <p class="mb-0 fs-5 ">Visto ulktima vez em:</p>
-                        <p class="fs-3 ">${element.episode[element.episode.length-1]}</p>
+                        <p class="fs-3 text-break   ">${element.episode[element.episode.length-1]}</p>
                         <div class="d-grid gap-2">
                           <button type="button" class="btn btn-outline-success  " data-bs-toggle="modal" data-bs-target="#exampleModal${element.id}">
                             Saiba mais
@@ -89,6 +144,7 @@ async function fetchPage(page) {
             let modalPai = document.getElementById(`${element.id}modal-body`) 
             modalPai.appendChild(listaUl)
 
+
         });
     }
 
@@ -102,3 +158,5 @@ async function fetchPage(page) {
         }
         return ulElement;
     }
+
+    fetchEpisodes()

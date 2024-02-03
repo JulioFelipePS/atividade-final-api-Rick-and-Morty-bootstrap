@@ -13,7 +13,7 @@
     <div class="container-fluid   p-0 m-0  ">
         <header class="row p-3 m-0 ">
             <div class="col-12 p-0">
-                <img src="./images/RICK_MORTY_ICON.png" class="icon mx-2 mt-3     " alt="">
+              <button id="btnHeader"><img src="./images/RICK_MORTY_ICON.png" class="icon mx-2 mt-3     " alt=""></button>                
             </div>
             <div class="col-12 d-flex justify-content-center mt-5 pt-5    ">
                 <h1 class="text-success display-3   "><strong>API de Rick and Morty</strong></h1>
@@ -22,8 +22,8 @@
                 <nav class="navbar ">
                     <div class="container-fluid">
                       <form class="d-flex" role="search">
-                        <input style="width: 40vw;" class="form-control me-2 search " type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
+                        <input style="width: 40vw;" class="form-control me-2 search " type="search" placeholder="Search" id="searchBar" aria-label="Search">
+                        <button class="btn btn-outline-success" id="searchButton" onclick="" type="submit">Search</button>
                       </form>
                     </div>
                   </nav>
@@ -109,6 +109,36 @@
 
                   
                     
+            </div>
+            <!-- <div class="row justify-content-evenly ">
+              <div class="col-4 d-flex justify-content-center ">
+                <button type="button" class="btn btn-lg  btn-outline-success  fs-2  ">Anterior</button>
+              </div>
+              <div class=" col-4 badge bg-outline-success d-flex justify-content-center align-items-center " style="width: 6rem;">
+                <span class="fs-1">1</span>
+              </div>
+              <div class="col-4 d-flex justify-content-center ">
+                <button type="button" class="btn btn-lg fs-2  btn-outline-success">Posterior</button>
+              </div>
+            </div> -->
+            <div id="paginationRow" class="row justify-content-center ">
+              <nav class="col-12 d-flex justify-content-center  "  aria-label="Page navigation example">
+                <ul class="pagination pagination-lg  ">
+                  <li class="page-item  ">
+                    <a class="page-link bg-success text-white  " id="anterior" href="#" aria-label="Previous">
+                      <span aria-hidden="true">&laquo;</span>
+                    </a>
+                  </li>
+                  <li class="page-item "><a id="firstPosition" class="page-link bg-success text-white"  href="#">1</a></li>
+                  <li class="page-item"><a id="secondPosition" class="page-link bg-success text-white" href="#">2</a></li>
+                  <li class="page-item"><a id="thirdPosition" class="page-link bg-success text-white" href="#">3</a></li>
+                  <li class="page-item">
+                    <a class="page-link bg-success text-white" href="#" aria-label="Next">
+                      <span aria-hidden="true">&raquo;</span>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
             </div>
         </main>
         <footer class="row p-5 m-0">
