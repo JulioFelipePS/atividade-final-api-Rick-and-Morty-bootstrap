@@ -6,8 +6,8 @@ let searchBar = document.getElementById("searchBar")
 let searchBtn =document.getElementById("searchButton")
 let btnHeader = document.getElementById("btnHeader")
 let paginationRow = document.getElementById("paginationRow")
-
-
+const episodeLista = [];
+fetchEpisodes()
 btnHeader.addEventListener("click",(e)=>{
     e.preventDefault()
     fetchPage(1)
@@ -31,7 +31,7 @@ async function fetchEpisodes(){
         console.log(response)
 
         const totalPages = response.data.info.pages
-        const episodeLista = [];
+        
             let response3
             if (totalPages===1) {
                 episodeLista.push(response.data.results)
@@ -39,12 +39,13 @@ async function fetchEpisodes(){
                 for (let index = 1; index <= totalPages; index++) {
                     response3 = await api.get(`/episode?page=${index}`)
                     response3.data.results.forEach(element => {
-                        episodeLista.push(element)
+                        episodeLista.push({name:element.name,url:element.url})
                     });
     
                 }
             }
-            console.log(episodeLista)
+
+            
 
     }catch(error){
         console.log("error")
@@ -90,11 +91,23 @@ async function fetchPage(page) {
    
 
     function writeCards(array){
+        
         rowCards.innerHTML=""
         array.forEach(element => {
-            let listaUl = criarListaHTML(element.episode)
+            let nomesEpisodes = obterNomesEpisodios(element.episode)
+            let listaUl = criarListaHTML(nomesEpisodes)
+
             
-            
+            // element.episode.forEach(url => {
+            //     let episodioCoreespondente = episodeLista.find(ep => ep.url === url);
+
+            //     if (episodioCoreespondente) {
+            //         nomesEpisodes.push(episodeLista.url);
+            //     }
+
+            // });
+            console.log(nomesEpisodes)
+            // console.log(episodeLista.name)
             rowCards.innerHTML +=`
             
             <div class="  col-6 col-sm-12 mb-5    " style="max-width: 700px; min-width: 375px;" >
@@ -111,7 +124,7 @@ async function fetchPage(page) {
                         <p class="mt-2 fs-5  mb-0 ">Ultima localização conhecida:</p>
                         <p class="mb-4 fs-2 ">${element.location.name}</p>
                         <p class="mb-0 fs-5 ">Visto ulktima vez em:</p>
-                        <p class="fs-3 text-break   ">${element.episode[element.episode.length-1]}</p>
+                        <p class="fs-3 text-break   ">${nomesEpisodes[nomesEpisodes.length-1]}</p>
                         <div class="d-grid gap-2">
                           <button type="button" class="btn btn-outline-success  " data-bs-toggle="modal" data-bs-target="#exampleModal${element.id}">
                             Saiba mais
@@ -159,4 +172,23 @@ async function fetchPage(page) {
         return ulElement;
     }
 
-    fetchEpisodes()
+
+
+    
+    function obterNomesEpisodios(listaUrl) {
+        let nomesCorrespondentes = [];
+    
+        listaUrl.forEach(url => {
+            episodeLista.forEach(element => {
+                if(url===element.url){
+                    nomesCorrespondentes.push(element.name)
+                }
+            });
+            
+    
+
+            
+        });
+    
+         return nomesCorrespondentes
+    }
