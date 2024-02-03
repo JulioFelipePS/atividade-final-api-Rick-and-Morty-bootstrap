@@ -13,7 +13,7 @@
     <div class="container-fluid   p-0 m-0  ">
         <header class="row p-3 m-0 ">
             <div class="col-12 p-0">
-              <button id="btnHeader"><img src="./images/RICK_MORTY_ICON.png" class="icon mx-2 mt-3     " alt=""></button>                
+              <button id="btnHeader" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Aperte aqui para voltar para a pagina 1"><img src="./images/RICK_MORTY_ICON.png" class="icon mx-2 mt-3     " alt=""></button>                
             </div>
             <div class="col-12 d-flex justify-content-center mt-5 pt-5    ">
                 <h1 class="text-success display-3   "><strong>API de Rick and Morty</strong></h1>
@@ -124,18 +124,22 @@
             <div id="paginationRow" class="row justify-content-center ">
               <nav class="col-12 d-flex justify-content-center  "  aria-label="Page navigation example">
                 <ul class="pagination pagination-lg  ">
-                  <li class="page-item  ">
-                    <a class="page-link bg-success text-white  " id="anterior" href="#" aria-label="Previous">
-                      <span aria-hidden="true">&laquo;</span>
-                    </a>
+                  <li class="page-item   ">
+                    <button class="meuBotao" onclick="prevPage()">
+                      <a class="page-link bg-success text-white "  id="prevPage" onclick="prevPage()" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                      </a>
+                    </button> 
                   </li>
-                  <li class="page-item "><a id="firstPosition" class="page-link bg-success text-white"  href="#">1</a></li>
-                  <li class="page-item"><a id="secondPosition" class="page-link bg-success text-white" href="#">2</a></li>
-                  <li class="page-item"><a id="thirdPosition" class="page-link bg-success text-white" href="#">3</a></li>
-                  <li class="page-item">
-                    <a class="page-link bg-success text-white" href="#" aria-label="Next">
-                      <span aria-hidden="true">&raquo;</span>
-                    </a>
+                  <li class="page-item " id="pageitem1" ><button class="meuBotao"><a id="firstPosition" class="page-link bg-success text-white"  href="#"></a></button></li>
+                  <li class="page-item" id="pageitem2"><button class="meuBotao"><a id="secondPosition" class="page-link bg-success text-white" href="#"></a></button></li>
+                  <li class="page-item" id="pageitem3"><button class="meuBotao"><a id="thirdPosition" class="page-link bg-success text-white "  href="#"></a></button></li>
+                  <li class="page-item "><button class="meuBotao"><a id="fourthPosition" class="page-link bg-success text-white"  href="#"></a></button></li>
+                  <li class="page-item "id="pageitem5" ><button class="meuBotao"><a id="fifthPosition" class="page-link bg-success text-white" href="#"></a></button></li>
+                  <li class="page-item"><button onclick="nextPage()" class="meuBotao"><a  class="page-link bg-success text-white"  href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                  </a></button>
+                    
                   </li>
                 </ul>
               </nav>
@@ -145,18 +149,18 @@
             <div class="col-12  justify-content-center    ">
                 <div class="row row-cols-md-3   ">
                     <div class="col-12 col-md-4  d-flex  justify-content-center ">
-                        <span class=" gray" id="personagens">Personagens:999</span>
+                        <span class=" gray" id="personagens">Personagens:</span>
                     </div>
                     <div class="col-12 col-md-4   d-flex  justify-content-center ">
-                        <span class=" gray" id="localizacoes">Localiazações:99</span>
+                        <span class=" gray" id="localizacoes">Localiazações:</span>
                     </div>
                     <div class="col-12 col-md-4  d-flex  justify-content-center ">
-                        <span class=" gray" id="episodios">Episódios:99</span>
+                        <span class=" gray" id="episodios">Episódios:</span>
                     </div>
                 </div>
             </div>
             <div class="col-12 d-flex justify-content-center my-5  ">
-                <p class=" gray" >Desenvolvido por: <strong class="text-white ">Julio Felipe Prá Spigolan</strong> em 2023</p>
+                <p class=" gray" >Desenvolvido por: <strong class="text-white ">Julio Felipe Prá Spigolan</strong> em 2024</p>
             </div>
         </footer>
     

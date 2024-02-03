@@ -2,10 +2,20 @@ const rowCards = document.getElementById("rowCards")
 let firstPositionPag = document.getElementById("firstPosition")
 let secondPositionPag = document.getElementById("secondPosition")
 let thirdPositionPag = document.getElementById("thirdPosition")
+let fourthPositionPag = document.getElementById("fourthPosition")
+let fifithPositionPag = document.getElementById("fifthPosition")
 let searchBar = document.getElementById("searchBar")
 let searchBtn =document.getElementById("searchButton")
 let btnHeader = document.getElementById("btnHeader")
 let paginationRow = document.getElementById("paginationRow")
+let personagens = document.getElementById("personagens")
+let episodiosFooter = document.getElementById("episodios")
+
+let currentPage = 1
+let totalPages = 42
+
+
+
 const episodeLista = [];
 fetchEpisodes()
 btnHeader.addEventListener("click",(e)=>{
@@ -28,10 +38,9 @@ searchBtn.addEventListener("click",(e)=>{
 async function fetchEpisodes(){
     try{
         const response=await api.get("/episode")
-        console.log(response)
-
-        const totalPages = response.data.info.pages
         
+        episodiosFooter.innerText+=` ${response.data.info.count}`
+        const totalPages = response.data.info.pages
             let response3
             if (totalPages===1) {
                 episodeLista.push(response.data.results)
@@ -55,7 +64,10 @@ async function fetchEpisodes(){
 async function fetchPage(page) {
     try {
         const response = await api.get(`/character?page=${page}`)
-        console.log(response.data.results)
+        personagens.innerText+=` ${response.data.info.count}`
+        totalPages=response.data.info.pages
+        pagButtons(page)
+        currentPage=page
         paginationRow.style.display="flex"
         const charList = response.data.results
         writeCards(charList)
@@ -67,7 +79,7 @@ async function fetchPage(page) {
     async function fetchName(name) {
         try {
             const response = await api.get(`/character?name=${name}`)
-            console.log(response.data.info.pages)
+            
             paginationRow.style.display="none"
             const totalPages = response.data.info.pages
             const characters = [];
@@ -83,7 +95,7 @@ async function fetchPage(page) {
     
                 }
             }
-            console.log(characters)
+            
             writeCards(characters)
         }catch (error) {
             console.log('Erro ao buscar mensagens', error)
@@ -98,16 +110,7 @@ async function fetchPage(page) {
             let listaUl = criarListaHTML(nomesEpisodes)
 
             
-            // element.episode.forEach(url => {
-            //     let episodioCoreespondente = episodeLista.find(ep => ep.url === url);
 
-            //     if (episodioCoreespondente) {
-            //         nomesEpisodes.push(episodeLista.url);
-            //     }
-
-            // });
-            console.log(nomesEpisodes)
-            // console.log(episodeLista.name)
             rowCards.innerHTML +=`
             
             <div class="  col-6 col-sm-12 mb-5    " style="max-width: 700px; min-width: 375px;" >
@@ -127,7 +130,7 @@ async function fetchPage(page) {
                         <p class="fs-3 text-break   ">${nomesEpisodes[nomesEpisodes.length-1]}</p>
                         <div class="d-grid gap-2">
                           <button type="button" class="btn btn-outline-success  " data-bs-toggle="modal" data-bs-target="#exampleModal${element.id}">
-                            Saiba mais
+                            Lista de Episodios
                           </button>
                         </div>
                       </div>
@@ -139,7 +142,7 @@ async function fetchPage(page) {
                   <div class="modal-dialog">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel${element.id}">Modal title</h1>
+                        <h1 class="modal-title fs-5" id="exampleModalLabel${element.id}">Lista de episodios que o personagem aparece</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
                       <div class="modal-body" id="${element.id}modal-body">
@@ -147,7 +150,6 @@ async function fetchPage(page) {
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
                       </div>
                     </div>
                   </div>
@@ -192,3 +194,74 @@ async function fetchPage(page) {
     
          return nomesCorrespondentes
     }
+
+
+    function prevPage(){
+        if (currentPage > 1) {
+            currentPage--
+            fetchPage(currentPage)
+          }
+          
+    }
+
+    function nextPage(){
+        if (currentPage < totalPages) {
+            currentPage++;
+            fetchPage(currentPage)
+          }
+          
+    }
+
+
+
+      function pagButtons(currentPage){
+        if(currentPage === 1){
+            firstPositionPag.innerText='1'
+            secondPositionPag.innerText='2'
+            thirdPositionPag.innerText = '3' 
+            fourthPositionPag.innerText='4'
+            fifithPositionPag.innerText='5'
+        }else
+        if(currentPage === 2){
+            firstPositionPag.innerText='1'
+            secondPositionPag.innerText='2'
+            thirdPositionPag.innerText = '3' 
+            fourthPositionPag.innerText='4'
+            fifithPositionPag.innerText='5'
+        }else
+        if(currentPage === 3){
+            firstPositionPag.innerText='1'
+            secondPositionPag.innerText='2'
+            thirdPositionPag.innerText = '3' 
+            fourthPositionPag.innerText='4'
+            fifithPositionPag.innerText='5'
+        }else
+        if(currentPage >= 4 && currentPage<= totalPages-3){
+            firstPositionPag.innerText=`${currentPage-2}`
+            secondPositionPag.innerText=`${currentPage-1}`
+            thirdPositionPag.innerText = `${currentPage}` 
+            fourthPositionPag.innerText=`${currentPage+1}`
+            fifithPositionPag.innerText=`${currentPage+2}`
+        }else{
+            firstPositionPag.innerText=`${totalPages-4}`
+            secondPositionPag.innerText=`${totalPages-3}`
+            thirdPositionPag.innerText = `${totalPages-2}` 
+            fourthPositionPag.innerText=`${totalPages-1}`
+            fifithPositionPag.innerText=`${totalPages}`
+        }
+
+      }
+
+    fetchPage(currentPage)
+
+    async functionfetchLocations(){
+        try{
+            const response = await api.get("/location")
+            console.log("aaaa")
+            console.log(response.data.info.count)
+            console.log('nbbbb')
+        }catch(error){
+            console.log("erro fetch location:"+error)
+        }
+    }
+    functionfetchLocations()

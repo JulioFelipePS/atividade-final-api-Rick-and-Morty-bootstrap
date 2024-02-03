@@ -27,7 +27,7 @@ header {
 }
 
 .icon {
-    height: 8vh;
+    height: 15vh;
     
 }
 .search{
@@ -61,4 +61,12 @@ footer{
 #btnHeader{
     background: none;
     border: none;
+}
+
+.meuBotao {
+    background-color: transparent;
+    color: #fff;
+    padding: 0;
+    border: none;
+    cursor: pointer;
 }
