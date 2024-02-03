@@ -37,7 +37,7 @@ async function fetchPage(page) {
 
     function writeCards(array){
         array.forEach(element => {
-            let lista = criarListaHTML(element.episode)
+            let listaUl = criarListaHTML(element.episode)
             
 
             rowCards.innerHTML +=`
@@ -87,7 +87,7 @@ async function fetchPage(page) {
             `
             
             let modalPai = document.getElementById(`${element.id}modal-body`) 
-            modalPai.appendChild(lista)
+            modalPai.appendChild(listaUl)
 
         });
     }
