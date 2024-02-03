@@ -43,6 +43,7 @@ main{
     width: 100vw;
     height: 100%;
     overflow-y: scroll;
+    overflow-x: scroll;
 }
 footer{
     background-color: #363636;
@@ -69,4 +70,10 @@ footer{
     padding: 0;
     border: none;
     cursor: pointer;
+}
+
+@media only screen and(min-width: 993px) {
+    main {
+        overflow-x: hidden;
+    }
 }

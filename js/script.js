@@ -10,6 +10,7 @@ let btnHeader = document.getElementById("btnHeader")
 let paginationRow = document.getElementById("paginationRow")
 let personagens = document.getElementById("personagens")
 let episodiosFooter = document.getElementById("episodios")
+let locais =document.getElementById("localizacoes")
 
 let currentPage = 1
 let totalPages = 42
@@ -18,6 +19,7 @@ let totalPages = 42
 
 const episodeLista = [];
 fetchEpisodes()
+
 btnHeader.addEventListener("click",(e)=>{
     e.preventDefault()
     fetchPage(1)
@@ -254,14 +256,13 @@ async function fetchPage(page) {
 
     fetchPage(currentPage)
 
-    async functionfetchLocations(){
+    async function fetchLocations(){
         try{
             const response = await api.get("/location")
-            console.log("aaaa")
-            console.log(response.data.info.count)
-            console.log('nbbbb')
+
+            locais.innerText +=` ${response.data.info.count}`
         }catch(error){
-            console.log("erro fetch location:"+error)
+            console.log(error)
         }
     }
-    functionfetchLocations()
+    fetchLocations()
