@@ -13,17 +13,17 @@
     <div class="container-fluid   p-0 m-0  ">
         <header class="row p-3 m-0 ">
             <div class="col-12 p-0">
-              <button id="btnHeader" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Aperte aqui para voltar para a pagina 1"><img src="./images/RICK_MORTY_ICON.png" class="icon mx-2 mt-3     " alt=""></button>                
+              <button id="btnHeader" class="btn heartbeat" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Aperte aqui para voltar para a pagina 1"><img src="./images/RICK_MORTY_ICON.png" class="icon mx-2 mt-3     " alt=""></button>                
             </div>
             <div class="col-12 d-flex justify-content-center mt-5 pt-5    ">
-                <h1 class="text-success display-3   "><strong>API de Rick and Morty</strong></h1>
+                <h1 class="text-success display-3 bounce-in-top   "><strong>API de Rick and Morty</strong></h1>
             </div>
-            <div class="col-12 d-flex justify-content-center pb-5  mb-5   ">
+            <div class="col-12 d-flex justify-content-center pb-5  mb-5    ">
                 <nav class="navbar ">
                     <div class="container-fluid">
                       <form class="d-flex" role="search">
-                        <input style="width: 40vw;" class="form-control me-2 search " type="search" placeholder="Search" id="searchBar" aria-label="Search">
-                        <button class="btn btn-outline-success" id="searchButton" onclick="" type="submit">Search</button>
+                        <input style="width: 40vw;" class="form-control me-2 search slide-in-bck-center " type="search" placeholder="Search" id="searchBar" aria-label="Search">
+                        <button class="btn btn-outline-success slide-in-bck-center" id="searchButton" onclick="" type="submit">Search</button>
                       </form>
                     </div>
                   </nav>
@@ -32,82 +32,7 @@
         <main class="p-0 " >
             <div class="row   p-5 m-0 d-flex  justify-content-between flex-wrap" id="rowCards">
                 
-                <div class="  col-6 col-sm-12 mb-5    " style="max-width: 700px; min-width: 375px;" >
-                  <div class="container-fluid  ">
-                    <div class="row   text-bg-dark "   >
-                      <div class="col-6 pt-3 ">
-                        <img src="https://rickandmortyapi.com/api/character/avatar/2.jpeg" class="img-fluid rounded mx-auto d-block  " alt="...">
-                      </div>
-                      <div class="col-6 py-3  ">
-                        <h1 class=" fs-3">Nome do Personagem</h1>
-                        <ul class="circle-list">
-                          <li class="fs-4 ">status  - <span class="fs-4 ">Humano</span></li>
-                        </ul>
-                        <p class="mt-2 fs-5  mb-0 ">Ultima localização conhecida:</p>
-                        <p class="mb-4 fs-2 ">Terra</p>
-                        <p class="mb-0 fs-5 ">Visto ulktima vez em:</p>
-                        <p class="fs-3 ">piloto piloto</p>
-                        <div class="d-grid gap-2">
-                          <button type="button" class="btn btn-outline-success  " data-bs-toggle="modal" data-bs-target="#exampleModal">
-                            Saiba mais
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- Modal -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                  <div class="modal-dialog">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                      </div>
-                      <div class="modal-body">
-                           y
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                 
-
-               
-
-               
-                
-
-
-                
-
-
-                  
                     
             </div>
             <!-- <div class="row justify-content-evenly ">
@@ -145,7 +70,7 @@
               </nav>
             </div>
         </main>
-        <footer class="row p-5 m-0">
+        <footer class="row p-5 m-0 color-change-4x">
             <div class="col-12  justify-content-center    ">
                 <div class="row row-cols-md-3   ">
                     <div class="col-12 col-md-4  d-flex  justify-content-center ">
@@ -159,7 +84,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 d-flex justify-content-center my-5  ">
+            <div class="col-12 d-flex justify-content-center my-5 slide-in-bck-center ">
                 <p class=" gray" >Desenvolvido por: <strong class="text-white ">Julio Felipe Prá Spigolan</strong> em 2024</p>
             </div>
         </footer>

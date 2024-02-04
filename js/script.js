@@ -11,14 +11,13 @@ let paginationRow = document.getElementById("paginationRow")
 let personagens = document.getElementById("personagens")
 let episodiosFooter = document.getElementById("episodios")
 let locais =document.getElementById("localizacoes")
-
+const episodeLista = [];
 let currentPage = 1
 let totalPages = 42
 
 
 
-const episodeLista = [];
-fetchEpisodes()
+
 
 btnHeader.addEventListener("click",(e)=>{
     e.preventDefault()
@@ -54,6 +53,7 @@ async function fetchEpisodes(){
                     });
     
                 }
+                
             }
 
             
@@ -62,6 +62,9 @@ async function fetchEpisodes(){
         console.log("error")
     }
 }
+
+
+fetchEpisodes()
 
 async function fetchPage(page) {
     try {
@@ -115,7 +118,7 @@ async function fetchPage(page) {
 
             rowCards.innerHTML +=`
             
-            <div class="  col-6 col-sm-12 mb-5    " style="max-width: 700px; min-width: 375px;" >
+            <div class="  col-6 col-sm-12 mb-5 slide-in-bck-center   " style="max-width: 700px; min-width: 375px;" >
                   <div class="container-fluid  ">
                     <div class="row   text-bg-dark "   >
                       <div class="col-6 pt-3 ">
@@ -140,7 +143,7 @@ async function fetchPage(page) {
                   </div>
                 </div>
                 <!-- Modal -->
-                <div class="modal fade" id="exampleModal${element.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal  slide-in-bck-center" id="exampleModal${element.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div class="modal-dialog">
                     <div class="modal-content">
                       <div class="modal-header">
@@ -223,6 +226,8 @@ async function fetchPage(page) {
             thirdPositionPag.innerText = '3' 
             fourthPositionPag.innerText='4'
             fifithPositionPag.innerText='5'
+            firstPositionPag.classList.remove("bg-success","text-white")
+            firstPositionPag.classList.add("disabled")
         }else
         if(currentPage === 2){
             firstPositionPag.innerText='1'
@@ -230,20 +235,21 @@ async function fetchPage(page) {
             thirdPositionPag.innerText = '3' 
             fourthPositionPag.innerText='4'
             fifithPositionPag.innerText='5'
+            firstPositionPag.classList.add("bg-success","text-white")
+            firstPositionPag.classList.remove("disabled")
+            secondPositionPag.classList.remove("bg-success","text-white")
+            secondPositionPag.classList.add("disabled")
         }else
-        if(currentPage === 3){
-            firstPositionPag.innerText='1'
-            secondPositionPag.innerText='2'
-            thirdPositionPag.innerText = '3' 
-            fourthPositionPag.innerText='4'
-            fifithPositionPag.innerText='5'
-        }else
-        if(currentPage >= 4 && currentPage<= totalPages-3){
+        if(currentPage >= 3 && currentPage<= totalPages-3){
             firstPositionPag.innerText=`${currentPage-2}`
             secondPositionPag.innerText=`${currentPage-1}`
             thirdPositionPag.innerText = `${currentPage}` 
             fourthPositionPag.innerText=`${currentPage+1}`
             fifithPositionPag.innerText=`${currentPage+2}`
+            secondPositionPag.classList.add("bg-success","text-white")
+            secondPositionPag.classList.remove("disabled")
+            thirdPositionPag.classList.remove("bg-success","text-white")
+            thirdPositionPag.classList.add("disabled")
         }else{
             firstPositionPag.innerText=`${totalPages-4}`
             secondPositionPag.innerText=`${totalPages-3}`
@@ -266,3 +272,19 @@ async function fetchPage(page) {
         }
     }
     fetchLocations()
+
+    fifithPositionPag.addEventListener("click",()=>{
+        fetchPage(Number(fifithPositionPag.innerText))
+    })
+    fourthPositionPag.addEventListener("click",()=>{
+        fetchPage(Number(fourthPositionPag.innerText))
+    })
+    thirdPositionPag.addEventListener("click",()=>{
+        fetchPage(Number(thirdPositionPag.innerText))
+    })
+    secondPositionPag.addEventListener("click",()=>{
+        fetchPage(Number(secondPositionPag.innerText))
+    })
+    firstPositionPag.addEventListener("click",()=>{
+        fetchPage(Number(firstPositionPag.innerText))
+    })
